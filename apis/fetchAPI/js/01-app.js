@@ -1,11 +1,5 @@
-
-
 const btnTxt = document.querySelector('#cargarTxt');
-btnTxt.addEventListener('click', obtenerDatos());
-
-
-function obtenerDatos(){
-
+btnTxt.addEventListener('click', ()=>{
     const url = 'data/datos.txt';
 
     fetch(url)
@@ -24,4 +18,4 @@ function obtenerDatos(){
         .catch( error => {
             console.log(error);
         })
-}
+});
