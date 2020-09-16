@@ -54,12 +54,44 @@ function cunsultarApi(ciudad, pais){
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad.value},${pais.value}&appid=${appId}`;
 
-    fetch(ur)
+    fetch(url)
         .then(respuesta => respuesta.json())
         .then(datos => {
             console.log(datos);
+            //limpiar el html previo
+            limpiarHtml();
             if(datos.cod === "4004"){
-                mostrarError('ciudad n o encontrada');
+                mostrarError('ciudad no encontrada');
+                return;
             }
+
+            //imprimir la respuesta
+            mostrarClima(datos);
         })
+}
+
+function mostrarClima(datos){
+    const { main: { temp, temp_max, temp_min} } = datos;
+    
+    
+    const centigrados = kelvilACentigrados(temp);
+
+    const actual = document.createElement('p');
+    actual.innerHTML = `${centigrados} &#8451;`;
+    actual.classList.add('font-bold', 'text-6xl');
+
+    const resultadoDiv = document.createElement('div');
+    resultadoDiv.classList.add('text-center', 'text-white');
+    resultadoDiv.appendChild(actual);
+
+    resultado.appendChild(resultadoDiv);
+    
+}
+
+const kelvilACentigrados = grados => parseInt(grados - 273.15);
+
+function limpiarHtml(){
+    while(resultado.firstChild){
+        resultado.removeChild(resultado.firstChild);
+    }
 }
