@@ -60,7 +60,7 @@ function cunsultarApi(ciudad, pais){
             console.log(datos);
             //limpiar el html previo
             limpiarHtml();
-            if(datos.cod === "4004"){
+            if(datos.cod === "404"){
                 mostrarError('ciudad no encontrada');
                 return;
             }
@@ -71,18 +71,35 @@ function cunsultarApi(ciudad, pais){
 }
 
 function mostrarClima(datos){
-    const { main: { temp, temp_max, temp_min} } = datos;
+    const { name, main: { temp, temp_max, temp_min} } = datos;
     
     
     const centigrados = kelvilACentigrados(temp);
+    const max = kelvilACentigrados(temp_max);
+    const min = kelvilACentigrados(temp_min);
+
+    const nombreCiudad = document.createElement('p');
+    nombreCiudad.innerHTML = `Clima en ${name}`;
+    nombreCiudad.classList.add('font-bold', 'text-2xl');
 
     const actual = document.createElement('p');
     actual.innerHTML = `${centigrados} &#8451;`;
     actual.classList.add('font-bold', 'text-6xl');
 
+    const maxima = document.createElement('p');
+    maxima.innerHTML = `Max: ${max} &#8451;`;
+    maxima.classList.add('text-xl');
+
+    const minima = document.createElement('p');
+    minima.innerHTML = `Min: ${min} &#8451;`;
+    minima.classList.add('text-xl');
+
     const resultadoDiv = document.createElement('div');
     resultadoDiv.classList.add('text-center', 'text-white');
+    resultadoDiv.appendChild(nombreCiudad);
     resultadoDiv.appendChild(actual);
+    resultadoDiv.appendChild(maxima);
+    resultadoDiv.appendChild(minima);
 
     resultado.appendChild(resultadoDiv);
     
