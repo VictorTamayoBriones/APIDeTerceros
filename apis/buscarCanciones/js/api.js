@@ -1,4 +1,3 @@
-import { error } from 'jquery';
 import * as UI from './interfaz.js';
 
 class API{
