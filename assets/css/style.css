@@ -13,4 +13,10 @@ img {
   margin: 1% 18%;
   position: absolute; }
 
+  a{
+    padding: 1%;
+    color: #dddddd;
+    background: rgb(44, 140, 196);
+    text-decoration: none;
+  }
 /*# sourceMappingURL=style.css.map */
