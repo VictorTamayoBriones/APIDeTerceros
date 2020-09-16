@@ -55,7 +55,7 @@ function cunsultarApi(ciudad, pais){
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad.value},${pais.value}&appid=${appId}`;
 
     spinner();
-
+    
     fetch(url)
         .then(respuesta => respuesta.json())
         .then(datos => {

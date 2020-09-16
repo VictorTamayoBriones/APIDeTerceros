@@ -14,7 +14,9 @@ img {
   position: absolute; }
 
   a{
-    padding: 1%;
+    padding: 10px;
+    border: 1px solid rgb(44, 140, 196);
+    border-radius: 8px;
     color: #dddddd;
     background: rgb(44, 140, 196);
     text-decoration: none;
